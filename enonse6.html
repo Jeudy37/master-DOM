@@ -7,21 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="mape"></div>
-    <script>
-const countryArray = ["Haiti", "France", "United States", "Belgium", "Canada", 
-                    "Jamaica", "Mexico", "Brazil", "Nigeria"];
+    <form id="mape">
 
+        <button type="submit" id="clik">show</button>
+        <span id="look"></span>
+    </form>
+    
+    
+    <script>
+    const countryArray = ["Haiti", "France", "United States", "Belgium", "Canada", 
+                    "Jamaica", "Mexico", "Brazil", "Nigeria"];
 function transfomasyon(el){
   return ` <ul>
   <li><input type="checkbox" name="country" value="${el}" /> ${el}</li>
 </ul>`;
 }
-
 let nouvoLis = countryArray.map(transfomasyon)
 let mape =document.getElementById('mape')
 for(el of nouvoLis){
     mape.innerHTML+=el
+}
+
+const clik=document.getElementById('mape')
+let montre=document.querySelector('input[name=country]')
+clik.onsubmit=(e)=>{
+    e.preventDefault()
+    const data = new FormData(mape)
+    
+    
+    mape.innerHTML=`chwa yo se :  ${data.getAll('country')}`
+    
+
 }
     </script>
 </body>

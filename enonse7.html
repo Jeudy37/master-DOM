@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="phone">Phone</label>
+    <input type="text" name="phone">
+    <span  id="restriksyon"></span>
+    <script>
+let phone =document.querySelector('input[name=phone]');
+const restriksyon =document.getElementById('restriksyon')
+let chifYo='0123456789'
+phone.onkeydown=(e)=>{
+    let value =e.target.value
+    let number=e.code;
+    if(number != 'Backspace'){
+        if(value.length >7 || !chifYo.includes(number.slice(-1))){
+            e.preventDefault()
+        }
+        if(number != 'Backspace' && value.length <7){
+            restriksyon.innerHTML='nimero ayiti pran 8 karakte'
+        }else{
+            restriksyon.innerHTML=''
+        }
+    }
+
+}
+    </script>
+</body>
+</html>

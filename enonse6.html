@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mape"></div>
+    <script>
+const countryArray = ["Haiti", "France", "United States", "Belgium", "Canada", 
+                    "Jamaica", "Mexico", "Brazil", "Nigeria"];
+
+function transfomasyon(el){
+  return ` <ul>
+  <li><input type="checkbox" name="country" value="${el}" /> ${el}</li>
+</ul>`;
+}
+
+let nouvoLis = countryArray.map(transfomasyon)
+let mape =document.getElementById('mape')
+for(el of nouvoLis){
+    mape.innerHTML+=el
+}
+    </script>
+</body>
+</html>

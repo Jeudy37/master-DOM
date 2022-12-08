@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='action' onclick="">AKSYON</button>
+<hr>
+<div>
+  <label>Tape aksyon ou vle simile sou bouton ki anlè a, nan lis sa [click, dbclick, aksyonpam]<br>Epi peze ENTER sou klavye a pou w valide</label><br>
+  <input type="text" name='event-name' placeholder="Non aksyon an..."/>
+</div>
+<div id="ekri"></div>
+    <script>
+        let ekri=document.getElementById('ekri')
+        let evenman =['click', 'dbclick', 'aksyonpam']
+        const input =document.querySelector('input[name=event-name]')
+        let action=document.getElementById('action')
+        input.addEventListener('keydown',(e)=>{
+            
+            console.log(e.code)
+            if(e.code ==='Enter'){
+                if(evenman.includes(input.value) && input.value=='click'){
+                action.click()
+                    ekri.innerHTML=(`evenman sa valid se ${input.value}`)
+                }
+
+        else if(evenman.includes(input.value) && input.value=='dbclick'){
+            const doubl= new Event('dblclick')
+            action.dispatchEvent(doubl)
+                ekri.innerHTML=(`evenman sa valid se ${input.value}`)
+        
+
+        }else if(evenman.includes(input.value) && input.value=='aksyonpam'){
+            const klikab= new Event('click')
+            action.dispatchEvent(klikab)
+            ekri.innerHTML=(`evenman sa valid se ${input.value}`)
+        }else{
+            ekri.innerText=(`evenman sa pa  valid`)
+        }
+    }
+        })
+    </script>
+</body>
+</html>

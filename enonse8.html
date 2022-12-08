@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <button id="next">Next</button>
+        <div class="group">
+          <input type='text' />
+        </div>
+        <div class="group">
+          <input type='text' />
+        </div>
+        <div class="group">
+          <input type='text' />
+        </div>
+        <div class="group">
+          <input type='text' />
+        </div>
+        <div class="group">
+          <input type='text' />
+        </div>
+        
+      </main>
+      
+      <script>
+        const first_input=document.querySelector('.group input')
+let input=document.querySelectorAll('.group input')
+console.log(input.length)
+let next =document.getElementById('next')
+//input[0].focus()
+input[0].style.borderColor="#0275d8"
+
+let click=0;
+
+    next.onclick=(e)=>{
+    e.preventDefault()
+    click++
+    if(click<input.length){
+        input[click].focus()
+        input[click].style.border=" 2px solid #0275d8"
+        input[click-1].style.borderColor="#777"
+    }else{
+        click=0
+        input[4].style.borderColor="#777"
+        input[0].style.border=" 2px solid #0275d8"
+        //input[click-1].style.borderColor="#777"
+    }
+    
+}
+      </script>
+</body>
+</html>

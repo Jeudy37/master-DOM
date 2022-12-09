@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Data</title>
+</head>
+<body>
+    <main>
+        <button id="get">Get data</button>
+        <div class="data-wrapper">
+        </div>
+    <main>
+
+        <script>
+            const data_wrapper=document.querySelector('.data-wrapper')
+            const get=document.getElementById('get')
+            get.addEventListener('click',()=>{
+            async function takeData(){
+                const eleman= await fetch('https://jsonplaceholder.typicode.com/todos')
+                if(eleman.ok ===true){
+                    return eleman.json();
+                }
+            }
+            takeData().then(resulta => {
+                resulta.map(done=>{
+                    if(done.completed==true){
+                        data_wrapper.innerHTML +=`
+                        <h3>Tit: ${done.title}</h3>
+                        completed<input type="checkbox" value="${done.completed}" checked><br>
+                        ID: ## <label>${done.id}</label>
+                        <hr>
+                        `
+                        
+                    }else{
+                        data_wrapper.innerHTML +=`
+                        <h3>Tit :${done.title}</h3>
+                        completed<input type="checkbox" value="${done.completed}" ><br>
+                        ID: ## <label>${done.id}</label>
+                        <hr>
+                        `
+                    }
+                
+                })
+            })
+
+        })
+        </script>
+</body>
+</html>

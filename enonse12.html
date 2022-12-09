@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+<body>
+    <div id="timer" value="5"></div>
+</body>
+<script>
+var el = document.getElementById('timer');
+let vale = el.getAttribute('value');
+function downSeconde() {
+    el.innerText = vale
+    if(vale<0){
+        el.innerText="Timeout"
+    }
+    vale --;
+}
+setInterval(downSeconde, 1000);
+</script>
+</html>

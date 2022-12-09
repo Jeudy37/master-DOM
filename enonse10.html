@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="parent">
+    <main>
+        <h1 class="text">What is Lorem Ipsum?</h1>
+        <p class="text2"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        
+        <button id="copy">📋</button>
+        <span id="show"></span>
+    </main>
+    <script>
+        //evite pran clik dwa sou souri an ak fonksyon sa 
+        const show=document.getElementById('show')
+        document.addEventListener("contextmenu",(e)=>{
+            e.preventDefault();
+
+        },false)
+
+        /////evite drage an pou kopi pa fet 
+        const parent =document.getElementById('parent')
+        parent.onmousedown=()=>{
+            
+            return false
+        }
+
+        ///evite kopi an avek ctrl +c
+        let ctrlprese = false;
+        let cActive = false;
+
+        document.body.addEventListener('keyup', (event) => {
+        if (event.key == 'Control') ctrlprese = false;
+        if (event.code == 'KeyC') cActive = false;
+        })
+
+        document.body.addEventListener('keydown', (event) => {
+        if (event.key == 'Control') ctrlprese = true;
+        if (ctrlprese == true && event.code == 'KeyC') {
+            
+            //show.innerHtml="nou pa dako CTRL + C la"
+            console.log('nou pa dako CTRL + C la')
+            event.preventDefault()
+        
+        }
+        
+    })
+    
+    let text=document.querySelector('.text')
+    let text2=document.querySelector('.text2')
+    const copyb=document.getElementById('copy')
+
+    ///kopye h la 
+    text.oncopy=(e)=>{
+        e.preventDefault()
+        let seleksyon=window.getSelection()
+        e.clipboarData.setData('text/plain',seleksyon.toString)
+    }
+//kopye p an
+    text2.oncopy=(e)=>{
+        e.preventDefault()
+        let seleksyon=window.getSelection()
+        e.clipboarData.setData('text/plain',seleksyon.toString)
+    }
+    copyb.onclick=(e)=>{
+        let range=document.createRange()
+        
+        range.setStart(text.firstChild,0)
+        range.setEnd(text2.firstChild, text2.textContent.length)
+        let selection =document.getSelection()
+        selection.addRange(range)
+
+        navigator.clipboard.writeText(selection.toString())
+
+
+
+
+    }
+
+</script>
+</body>
+</html> 

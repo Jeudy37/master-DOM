@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form>
+             <input type="text" placeholder="Search..." >
+             <button type="submit">SEARCH</button>
+        </form>
+          
+        <p>Vulputate mi sit amet mauris. Aliquam ut porttitor leo a diam sollicitudin. Odio euismod lacinia at quis risus sed. Id diam maecenas ultricies mi eget mauris pharetra. Euismod elementum nisi quis eleifend quam adipiscing. Enim sit amet venenatis urna. At imperdiet dui accumsan sit amet nulla facilisi morbi. Non enim praesent elementum facilisis. Sagittis orci a scelerisque purus semper eget duis. Eget magna fermentum iaculis eu non diam phasellus.</p>
+      
+        <p>Scelerisque varius morbi enim nunc faucibus a pellentesque. Diam vel quam elementum pulvinar etiam non quam. Ante metus dictum at tempor. Adipiscing enim eu turpis egestas. Dignissim sodales ut eu sem integer vitae justo. Sed risus pretium quam vulputate dignissim. Sit amet volutpat consequat mauris nunc congue. Magna eget est lorem ipsum dolor sit amet. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Egestas integer eget aliquet nibh praesent tristique magna sit amet.</p>
+      
+      </div>
+
+<script>
+    const button= document.querySelector('button');
+    button.onclick=(e)=>{
+        e.preventDefault()
+        const input= document.querySelector('input').value
+    let  paragraph=document.querySelector('p').innerHTML
+    let  paragraph2=document.querySelectorAll('p')[1].innerHTML
+        paragraph=paragraph.split(`<span style="color:green;font-weight: 900;">`).join("");
+        paragraph=paragraph.split(`</span>`).join("");
+
+
+        paragraph2=paragraph2.split(`<span style="color:green;font-weight: 900;">`).join("");
+        paragraph2=paragraph2.split(`</span>`).join("");
+        if(input!=""){
+            
+            var rexep= new RegExp(input,"ig");
+            var formereplace=`<span style="color:green;font-weight: 900;">${input}</span>`;
+            paragraph=paragraph.replace(rexep,formereplace);
+            paragraph2=paragraph2.replace(rexep,formereplace);
+            document.querySelector('p').innerHTML=paragraph
+            document.querySelectorAll('p')[1].innerHTML=paragraph2
+        }
+
+    }
+
+
+    
+</script>
+</body>
+</html>

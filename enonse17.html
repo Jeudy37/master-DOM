@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table{
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    th, td{
+        padding: 10px 20px;
+        border: 1px solid #000;
+    }
+</style>
+<body>
+
+<script>
+let products = [
+  {
+    id: 123,
+    name: 'USB Flash drive',
+    price: 12.56,
+    quantity: 1
+  },
+  {
+    id: 456,
+    name: 'Laptop Dell',
+    price: 892.00,
+    quantity: 3
+  },
+  {
+    id: 678,
+    name: 'Glasses',
+    price: 7.50,
+    quantity: 2
+  }
+]
+
+
+
+
+let table = document.createElement('table');
+let thead = document.createElement('thead');
+let tbody = document.createElement('tbody');
+
+table.appendChild(thead);
+table.appendChild(tbody);
+
+
+let row_1 = document.createElement('tr');
+let thYo_1 = document.createElement('th');
+thYo_1.innerHTML = "Product Name";
+let thYo_2 = document.createElement('th');
+thYo_2.innerHTML = "Unit Price";
+let thYo_3 = document.createElement('th');
+thYo_3.innerHTML = "Quantity";
+let thYo_4 = document.createElement('th');
+thYo_4.innerHTML = "Subtotal";
+let thYo_5 = document.createElement('th');
+thYo_5.innerHTML = "Action";
+
+row_1.appendChild(thYo_1);
+row_1.appendChild(thYo_2);
+row_1.appendChild(thYo_3);
+row_1.appendChild(thYo_4);
+row_1.appendChild(thYo_5);
+thead.appendChild(row_1);
+
+for(i=0;i<products.length;i++){
+
+let row_2 = document.createElement('tr');
+let row_2_data_1 = document.createElement('td');
+row_2_data_1.innerHTML = products[i].name;
+let row_2_data_2 = document.createElement('td');
+row_2_data_2.innerHTML = `$ ${products[i].price}`;
+row_2_data_2.setAttribute("id",`${products[i].id}`);
+row_2_data_2.setAttribute("value",`${products[i].price}`);
+let row_2_data_3 = document.createElement('td');
+
+let row_2_data_4 = document.createElement('td');
+let row_2_data_5 = document.createElement('td');
+row_2_data_4.classList.add('h5')
+let h5=document.createElement('h5')
+h5.setAttribute("id",[i])
+// input.type="";
+// input.value=""
+h5.innerHTML=""
+row_2_data_4.append(h5)
+
+let inputt=document.createElement('input')
+inputt.type="";
+inputt.value="0"
+row_2_data_3.append(inputt)
+
+
+
+row_2_data_5.classList.add('button')
+let button= document.createElement('button')
+button.type="";
+button.innerText="remove"
+button.style.backgroundColor="red"
+row_2_data_5.append(button)
+
+row_2.appendChild(row_2_data_1);
+row_2.appendChild(row_2_data_2);
+row_2.appendChild(row_2_data_3);
+row_2.appendChild(row_2_data_4);
+row_2.appendChild(row_2_data_5);
+tbody.appendChild(row_2);
+
+
+}
+
+
+
+
+let btn=document.createElement('button')
+btn.type='submit'
+btn.setAttribute("id","peze")
+btn.style.backgroundColor="blue"
+btn.innerText="Calculate Price"
+btn.style.marginLeft="350px"
+document.body.appendChild(table);
+document.body.appendChild(btn)
+
+
+let span =document.createElement('span')
+
+let div =document.createElement('div')
+div.style.marginLeft="350px"
+div.style.marginTop="35px"
+div.append(span)
+document.body.appendChild(div)
+
+const peze =document.getElementById('peze')
+//peze.addEventListener('click',(e)=>{
+let input=document.querySelector('input')
+
+input.oninput=()=>{
+    let valeur =document.getElementById('123')
+let kob =valeur.getAttribute('value')
+let kob2 =kob
+let som =document.querySelector('.h5')
+
+let number =input.value
+
+    let resulta = Math.round(( kob2 * number)*100 )/100
+    som.innerText=`$ ${resulta}`
+    
+}
+
+
+const input2=document.querySelectorAll('input')[1]
+console.log(input2)
+input2.oninput=()=>{
+    let valeur2 =document.getElementById('456')
+let lajan =valeur2.getAttribute('value')
+let lajann =parseFloat(lajan)
+let som2=document.getElementById('1')
+let number2=input2.value
+let resulta2= Math.round(( lajann * number2)*100)/100
+som2.innerText=`$ ${resulta2}`
+}
+
+
+let input3=document.querySelectorAll('input')[2]
+input3.oninput=()=>{
+    let valeur3 =document.getElementById('678')
+let lajan3 =valeur3.getAttribute('value')
+let lajann3 =parseFloat(lajan3)
+let som3=document.getElementById('2')
+let number3=input3.value
+let resulta3=Math.round(( lajann3 * number3)*100)/100
+som3.innerHTML=`$ ${resulta3}`
+}
+
+
+let total=document.querySelector('#peze')
+const ekriti=document.querySelector('span')
+total.onclick=()=>{
+    let som =document.querySelector('.h5');
+    let som2=document.getElementById('1');
+    let som3=document.getElementById('2');
+    
+    let somasyon1=som.innerText.slice(1)
+    let somasyon2=som2.innerText.slice(1)
+    let somasyon3=som3.innerText.slice(1)
+    let a=parseFloat(somasyon1)
+    let b=parseFloat(somasyon2)
+    let c=parseFloat(somasyon3)
+    let f=a+b+c
+    ekriti.innerText=`TOTal: $${f}`
+}
+
+
+/////////////remove
+let som =document.querySelector('.h5');
+    let som2=document.getElementById('1');
+    let som3=document.getElementById('2');
+    let tr=document.querySelectorAll('tr')[1]
+const remove1=document.querySelector('button')
+remove1.onclick=()=>{
+tr.innerHTML=""
+let somasyon2=som2.innerText.slice(1)
+    let somasyon3=som3.innerText.slice(1)
+    let b=parseFloat(somasyon2)
+    let c=parseFloat(somasyon3)
+    let f=b+c
+    ekriti.innerText=`TOTal: $${f}`
+
+}
+
+let tr2=document.querySelectorAll('tr')[2]
+const remove2=document.querySelectorAll('button')[1]
+remove2.onclick=()=>{
+tr2.innerHTML=""
+let somasyon=som.innerText.slice(1)
+    let somasyon3=som3.innerText.slice(1)
+    let a=parseFloat(somasyon)
+    let c=parseFloat(somasyon3)
+    let f=a+c
+    ekriti.innerText=`TOTal: $${f}`
+
+}
+
+
+let tr3=document.querySelectorAll('tr')[3]
+const remove3=document.querySelectorAll('button')[2]
+remove3.onclick=()=>{
+tr3.innerHTML=""
+let somasyon=som.innerText.slice(1)
+    let somasyon2=som2.innerText.slice(1)
+    let a=parseFloat(somasyon)
+    let b=parseFloat(somasyon2)
+    let f=a+b
+    ekriti.innerText=`TOTal: $${f}`
+
+}
+
+
+</script>
+</body>
+</html>
